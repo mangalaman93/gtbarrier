@@ -10,7 +10,7 @@ SDIR = src
 TDIR = test
 ODIR = bin
 
-CFLAGS = -I$(IDIR) $(DEBUG) $(PROFILE) -Wall -openmp
+CFLAGS = -I$(IDIR) $(DEBUG) $(PROFILE) -Wall -fopenmp
 LIBS = -lpthread
 
 _DEPS = timer.h tbarriermp.h

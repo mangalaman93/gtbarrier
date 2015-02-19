@@ -3,7 +3,11 @@
 using namespace std;
 
 class TBarrierMP {
+  int num_threads;
+  int current_threads;
+
 public:
-  TBarrierMP();
+  TBarrierMP(int n);
   ~TBarrierMP();
+  void barrier();
 };
