@@ -1,12 +1,13 @@
 #include <cstdio>
 #include <cmath>
+#include <mpi.h>
 using namespace std;
 
 class TBarrierMPI {
-  int num_threads;
+  int num_procs;
 
 public:
-  TBarrierMPI(int nthreads);
+  TBarrierMPI(int nporcs);
   ~TBarrierMPI();
-  void barrier(int thread_id);
+  void barrier(int rank);
 };

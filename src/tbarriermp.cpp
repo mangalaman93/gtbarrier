@@ -54,6 +54,7 @@ void TBarrierMP::barrier(int thread_id) {
     base_index += temp_threads;
   }
 
+  // wake up
   if(thread_id == 0) {
     for(int i=0; i<datasize; i++) {
       barrier_sense[i] = true;
