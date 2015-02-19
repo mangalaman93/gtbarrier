@@ -1,13 +1,18 @@
 #include <cstdio>
-#include "timer.h"
+#include <cmath>
 using namespace std;
 
 class TBarrierMP {
   int num_threads;
-  int current_threads;
+  int datasize;
+
+  // sense variables
+  volatile bool *barrier_sense;
+  volatile bool *wakeup_sense;
+  volatile bool global_wakeup;
 
 public:
-  TBarrierMP(int n);
+  TBarrierMP(int nthreads);
   ~TBarrierMP();
-  void barrier();
+  void barrier(int thread_id);
 };

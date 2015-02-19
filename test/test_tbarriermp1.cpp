@@ -5,23 +5,39 @@
 using namespace std;
 
 int main() {
-  TBarrierMP tbmp(2);
-  int a[2]={-1,-1};
+  omp_set_num_threads(5);
+  TBarrierMP tbmp(5);
 
-#pragma omp parallel
-  if(omp_get_thread_num() < 2) {
-    a[omp_get_thread_num()] = omp_get_thread_num();
-    usleep(rand()%1000000);
-    printf("a[%d] = %d\n",omp_get_thread_num(), a[omp_get_thread_num()]);
-  }
+  int nthreads, tid, i;
+  float a[100], b[100], c[100];
 
-  tbmp.barrier();
+  /* Some initializations */
+  for (i=0; i<100; i++)
+    a[i] = b[i] = i * 1.0;
 
-#pragma omp parallel
-  if(omp_get_thread_num() < 2) {
-    a[omp_get_thread_num()] = -1;
-    usleep(rand()%1000000);
-    printf("a[%d] = %d\n",omp_get_thread_num(), a[omp_get_thread_num()]);
+  #pragma omp parallel shared(a,b,c,nthreads,tbmp) private(i,tid)
+  {
+    tid = omp_get_thread_num();
+    if(tid == 0) {
+      nthreads = omp_get_num_threads();
+      printf("Number of threads = %d\n", nthreads);
+    }
+    printf("Thread %d starting...\n",tid);
+    tbmp.barrier(omp_get_thread_num());
+
+    #pragma omp for schedule(dynamic, 10) nowait
+    for(i=0; i<100; i++) {
+      c[i] = a[i] + b[i];
+      printf("Thread %d: c[%d]= %f\n",tid,i,c[i]);
+    }
+    tbmp.barrier(omp_get_thread_num());
+
+    #pragma omp for schedule(dynamic, 10) nowait
+    for(i=0; i<100; i++) {
+      c[i] = a[i] + b[i];
+      printf("=> Thread %d: c[%d]= %f\n",tid,i,c[i]);
+    }
+    tbmp.barrier(omp_get_thread_num());
   }
 
   return 0;
