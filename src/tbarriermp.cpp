@@ -28,7 +28,9 @@ TBarrierMP::~TBarrierMP() {
   delete[] wakeup_sense;
 }
 
-void TBarrierMP::barrier(int thread_id) {
+void TBarrierMP::barrier() {
+  int thread_id = omp_get_thread_num();
+
   // reverse wakeup sense
   wakeup_sense[thread_id] = !wakeup_sense[thread_id];
 

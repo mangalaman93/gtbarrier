@@ -7,12 +7,15 @@ TBarrierMPI::TBarrierMPI(int nprocs) {
 TBarrierMPI::~TBarrierMPI() {
 }
 
-void TBarrierMPI::barrier(int rank) {
+void TBarrierMPI::barrier() {
+  int rank;
+  MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+
   // Parameters
   char msg='*';
   MPI_Status stat;
 
-	/* barrier tree: left node of the tree always wins
+  /* barrier tree: left node of the tree always wins
    * i.e. out of P4, P6 => P4 wins */
   int temp_id = rank;
   int temp_procs = num_procs;
@@ -32,6 +35,7 @@ void TBarrierMPI::barrier(int rank) {
 
     temp_id = temp_id/2;
     temp_procs = (temp_procs+1)/2;
+    offset *= 2;
   }
 
   // wake up

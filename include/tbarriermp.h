@@ -1,5 +1,6 @@
 #include <cstdio>
 #include <cmath>
+#include <omp.h>
 using namespace std;
 
 class TBarrierMP {
@@ -14,5 +15,5 @@ class TBarrierMP {
 public:
   TBarrierMP(int nthreads);
   ~TBarrierMP();
-  void barrier(int thread_id);
+  void barrier();
 };

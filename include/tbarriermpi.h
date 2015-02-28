@@ -9,5 +9,5 @@ class TBarrierMPI {
 public:
   TBarrierMPI(int nporcs);
   ~TBarrierMPI();
-  void barrier(int rank);
+  void barrier();
 };

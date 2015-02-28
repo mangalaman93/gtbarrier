@@ -23,21 +23,21 @@ int main() {
       printf("Number of threads = %d\n", nthreads);
     }
     printf("Thread %d starting...\n",tid);
-    tbmp.barrier(omp_get_thread_num());
+    tbmp.barrier();
 
     #pragma omp for schedule(dynamic, 10) nowait
     for(i=0; i<100; i++) {
       c[i] = a[i] + b[i];
       printf("Thread %d: c[%d]= %f\n",tid,i,c[i]);
     }
-    tbmp.barrier(omp_get_thread_num());
+    tbmp.barrier();
 
     #pragma omp for schedule(dynamic, 10) nowait
     for(i=0; i<100; i++) {
       c[i] = a[i] + b[i];
       printf("=> Thread %d: c[%d]= %f\n",tid,i,c[i]);
     }
-    tbmp.barrier(omp_get_thread_num());
+    tbmp.barrier();
   }
 
   return 0;
