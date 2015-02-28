@@ -4,8 +4,7 @@ TBarrierMPI::TBarrierMPI(int nprocs) {
   num_procs = nprocs;
 }
 
-TBarrierMPI::~TBarrierMPI() {
-}
+TBarrierMPI::~TBarrierMPI() {}
 
 void TBarrierMPI::barrier() {
   int rank;

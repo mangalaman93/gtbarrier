@@ -32,7 +32,13 @@ MPIOBJ = $(patsubst %,$(ODIR)/%,$(_MPIOBJ))
 _MPIMAIN = test1_tbarriermpi
 MPIMAIN = $(patsubst %,$(ODIR)/%,$(_MPIMAIN))
 
-all: dir $(MPMAIN) $(MPIMAIN)
+_MIXEDOBJ = tbarriermixed.o
+MIXEDOBJ = $(patsubst %,$(ODIR)/%,$(_MIXEDOBJ))
+
+_MIXEDMAIN = test1_tbarriermixed
+MIXEDMAIN = $(patsubst %,$(ODIR)/%,$(_MIXEDMAIN))
+
+all: dir $(MPMAIN) $(MPIMAIN) $(MIXEDMAIN)
 
 dir:
 	mkdir -p $(ODIR)
@@ -48,6 +54,12 @@ $(ODIR)/%mp.o: $(SDIR)/%mp.cpp $(DEPS)
 
 $(ODIR)/%mp: $(TDIR)/%mp.cpp $(OBJ) $(MPOBJ)
 	$(CC) $(CFLAGS) -o $@ $^ $(LIBS) -fopenmp
+
+$(ODIR)/%mixed.o: $(SDIR)/%mixed.cpp $(DEPS)
+	$(MPICC) $(CFLAGS) -c -o $@ $<
+
+$(ODIR)/%mixed: $(TDIR)/%mixed.cpp $(OBJ) $(MIXEDOBJ)
+	$(MPICC) $(CFLAGS) -o $@ $^ $(LIBS) $(MPIOBJ) -fopenmp
 
 $(ODIR)/%r.o: $(SDIR)/%r.cpp $(DEPS)
 	$(CC) $(CFLAGS) -c -o $@ $<
