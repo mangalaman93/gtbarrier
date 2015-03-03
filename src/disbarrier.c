@@ -1,10 +1,12 @@
 #include <stdio.h>
 #include "mpi.h"
 #define MAXPROCESSORS 20
-void disbarrier(int n)
+
+void disbarrier()
 {
-  int rank,dst,src;
+  int n,rank,dst,src;
   //Initialization
+  MPI_Comm_size(MPI_COMM_WORLD, &n);
   MPI_Status mpi_result;
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
   int array[MAXPROCESSORS]={0};
@@ -25,21 +27,21 @@ void disbarrier(int n)
   fflush(stdout);
 }
 
-int main(int argc, char **argv)
+/*int main(int argc, char **argv)
 {
   //Initialization
   MPI_Init(NULL, NULL);
   int n,rank;
   MPI_Comm_size(MPI_COMM_WORLD, &n);
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
-  disbarrier(n);
+  disbarrier();
   printf("First hello from %d\n\n",rank);
-  disbarrier(n);
+  disbarrier();
   printf("Second hello from %d\n\n",rank);
-  disbarrier(n);
+  disbarrier();
   printf("Third hello from %d\n\n",rank);
-  disbarrier(n);
+  disbarrier();
   MPI_Finalize();
   return 0;
-}
+}*/
 

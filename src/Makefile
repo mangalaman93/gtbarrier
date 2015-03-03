@@ -10,11 +10,14 @@ MPICC = mpicc
 MPICH = /home/ubuntu/openmpi-1.8.1/ompi
 CFLAGS = -I$(MPICH)/include
 
-all: disbarrier
+all: disbarrier evaluateMPI
+
 
 disbarrier: disbarrier.c
 	$(MPICC) -o $@ $(LDFLAGS) $^ $(LDLIBS)
 
+evaluateMPI: evaluateMPI.c
+	$(MPICC) -o $@ $(LDFLAGS) $^ $(LDLIBS)
 
 clean:
-	rm -f *.o disbarrier
+	rm -f *.o disbarrier evaluateMPI
