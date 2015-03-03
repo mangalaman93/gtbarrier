@@ -14,14 +14,14 @@ void disbarrier(int n)
   int logp=n;
   count++;
   do{   
-	dst=(rank+pow) % p;
-	src=((rank-pow) % p);
-        if (src<0) {src+=p;}
+	dst=(rank+pow) % n;
+	src=((rank-pow) % n);
+        if (src<0) {src+=n;}
 	MPI_Send(&count, 1, MPI_INT, dst, 0, MPI_COMM_WORLD);
 	MPI_Recv(&array[src], 1, MPI_INT, src,0, MPI_COMM_WORLD, &mpi_result);
   	logp=logp>>1;
   	pow=pow<<1;
-  } while(logp>1);
+  } while(logp>0);
   fflush(stdout);
 }
 
