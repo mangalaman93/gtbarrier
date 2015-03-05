@@ -2,8 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define NUM_THREADS 8
-#define NUM_BARRIERS 8
+int NUM_THREADS=8;
+int NUM_BARRIERS=8;
 
 static void centralized_barrier( int *count, int *sense, int *local_sense ){
         *local_sense = ! *local_sense;
@@ -20,32 +20,35 @@ static void centralized_barrier( int *count, int *sense, int *local_sense ){
         }
 }
 
-int main(){
-printf("Initializing...\n");
-omp_set_num_threads( NUM_THREADS );
-int sense = 1, count = NUM_THREADS;
-
-#pragma omp parallel shared(sense, count)
-{
-    int num_threads = omp_get_num_threads();
-    int thread_num = omp_get_thread_num();
-    int local_sense = 1;
-    long j;
-    double time1, time2;
-
-
-    for(j=0; j<NUM_BARRIERS; j++){
-        time1 = omp_get_wtime();
-        //Centralized barrier
-        centralized_barrier(&count, &sense, &local_sense);
-        time2 = omp_get_wtime();
-        //Centralized barrier reached by all threads. Continue.
-        printf("Thread %d of %d arrived at barrier %d in %f ms\n",
-                                 thread_num, num_threads,(int)j,time2-time1);
+int main(int argc, char **argv){
+        if (argc != 3){ printf( "usage: %s num_barriers num_threads\n", argv[0] ); return -1;}
+        NUM_BARRIERS=atoi(argv[1]);
+        NUM_THREADS=atoi(argv[2]);
+        //printf("Initializing...\n");
+        omp_set_num_threads( NUM_THREADS );
+        int sense = 1, count = NUM_THREADS;
+        int counter=0,sum=0;
+        #pragma omp parallel shared(sense, count)
+        {
+            int local_sense = 1;
+            long j;
+            double time1, time2;
+            time1 = omp_get_wtime();
+            for(j=0; j<NUM_BARRIERS; j++){
+                //Centralized barrier
+                centralized_barrier(&count, &sense, &local_sense);
+                //Centralized barrier reached by all threads. Continue.
+             }
+            time2 = omp_get_wtime();
+        #pragma omp critical
+        {
+            sum+=(time2-time1)*1000;
+            counter+=1;
         }
 
+        }
+        //printf("Average time per thread: %d ms\n",(int)(sum/(NUM_BARRIERS*NUM_THREADS)));
+        //printf("Stopping...\n");
+        printf("Average time per barrier: %d ms\n",(int)(sum/NUM_BARRIERS));
+        return (int)(sum/NUM_BARRIERS);
 }
-printf("Stopping...\n");
-return 0;
-}
-
