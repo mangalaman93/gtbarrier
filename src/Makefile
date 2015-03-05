@@ -10,8 +10,10 @@ MPICC = mpicc
 MPICH = /home/ubuntu/openmpi-1.8.1/ompi
 CFLAGS = -I$(MPICH)/include
 
-all: disbarrier evaluateMPI
+all: disbarrier evaluateMPI centralized
 
+centralized: centralized.o
+	$(CC) $(LDFLAGS) -o $@ $^ $(LDLIBS)
 
 disbarrier: disbarrier.c
 	$(MPICC) -o $@ $(LDFLAGS) $^ $(LDLIBS)
