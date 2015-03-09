@@ -17,8 +17,8 @@ echo "Current directory: ${PWD}"
 
 echo ""
 echo "Tournament Mixed Barrier"
-for procs in 2 4 6 8 10 12; do
-  for threads in 2 4 6 8; do
+for procs in 2 4 6 8; do
+  for threads in 2 4 6 8 10 12; do
     echo "*** Processes ${procs},${threads} ***"
     mpirun --hostfile $PBS_NODEFILE -np ${procs} --mca btl tcp,self ./bin/perf_tbarriermixed ${threads}
   done
