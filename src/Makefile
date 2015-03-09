@@ -2,7 +2,7 @@ OMPFLAGS = -fopenmp
 OMPLIBS = -lgomp
 
 CC = gcc
-CPPFLAGS = -g -Wall $(OMPFLAGS)
+CPPFLAGS = -g -Wall 
 LDFLAGS = -g -Wall
 LDLIBS = $(OMPLIBS)
 
@@ -16,7 +16,7 @@ centralized: centralized.o
 	$(CC) $(LDFLAGS) -o $@ $^ $(LDLIBS) 
 
 disbarrier: disbarrier.c
-	$(CC) -o $@ $(LDFLAGS) $^ $(LDLIBS)
+	$(MPICC) -o $@ $^ $(LDLIBS)
 
 evaluateMPI: evaluateMPI.c
 	$(MPICC) -o $@ $(LDFLAGS) $^ $(LDLIBS)

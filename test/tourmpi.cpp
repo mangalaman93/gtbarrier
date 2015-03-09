@@ -27,7 +27,7 @@ int main(int argc, char **argv)
   for(j=0; j<NUM_BARRIERS; j++){tbmpi.barrier();}
   gettimeofday(&time2,NULL);
   
-  diff=(time2.tv_sec-time1.tv_sec)*1000000 + time2.tv_usec/1000-time1.tv_usec;
+  diff=(time2.tv_sec-time1.tv_sec)*1000000 + time2.tv_usec-time1.tv_usec;
   time[n]=(int) diff/NUM_BARRIERS;
   
   printf("%d Average time %d processes took to sync per barrier:,%d, us\n",rank,n,time[n]);

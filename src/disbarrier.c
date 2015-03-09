@@ -46,7 +46,7 @@ int main(int argc, char **argv)
   gettimeofday(&time1,NULL);
   for(j=0; j<NUM_BARRIERS; j++){disbarrier(rank,n);}
   gettimeofday(&time2,NULL);
-  diff=(time2.tv_sec-time1.tv_sec)*1000 + time2.tv_usec/1000-time1.tv_usec/1000;
+  diff=(time2.tv_sec-time1.tv_sec)*1000000 + time2.tv_usec-time1.tv_usec;
   time[n]=(int) diff/NUM_BARRIERS;
   printf("%d Average time %d processes took to sync per barrier:%d ms\n",rank,n,time[n]);
   disbarrier(rank,n);
