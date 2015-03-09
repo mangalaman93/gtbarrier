@@ -49,6 +49,6 @@ int main(int argc, char **argv){
         }
         //printf("Average time per thread: %d ms\n",(int)(sum/(NUM_BARRIERS*NUM_THREADS)));
         //printf("Stopping...\n");
-        printf("Average time per barrier: %d us\n",(int)(sum/NUM_BARRIERS));
+        printf("Average time per barrier: ,%d, us\n",(int)(sum/NUM_BARRIERS));
         return (int)(sum/NUM_BARRIERS);
 }
