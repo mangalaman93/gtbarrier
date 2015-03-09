@@ -15,10 +15,22 @@ echo "Script began:" `date`
 echo "Node:" `hostname`
 echo "Current directory: ${PWD}"
 
-echo ""
-for trial in 2 3 4 5 6; do
+echo "\ndefault openmp barrier"
+for procs in 2 3 4 5 6; do
   echo "*** Processes ${procs} ***"
   ./bin/perf_defaultmp ${procs}
+done
+
+echo "\n\ndefault Tournament barrier"
+for procs in 2 3 4 5 6; do
+  echo "*** Processes ${procs} ***"
+  ./bin/perf_tbarriermp ${procs}
+done
+
+echo "\n\ndefault Centralised barrier"
+for procs in 2 3 4 5 6; do
+  echo "*** Processes ${procs} ***"
+  ./bin/perf_cbarriermp ${procs}
 done
 
 echo ""

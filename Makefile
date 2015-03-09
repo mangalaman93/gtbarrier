@@ -17,7 +17,7 @@ LIBS =
 _MPOBJ = tbarriermp.o cbarriermp.o
 MPOBJ = $(patsubst %,$(ODIR)/%,$(_MPOBJ))
 
-_MPMAIN = test1_tbarriermp test1_cbarriermp perf_defaultmp
+_MPMAIN = test1_tbarriermp test1_cbarriermp perf_defaultmp perf_tbarriermp perf_cbarriermp
 MPMAIN = $(patsubst %,$(ODIR)/%,$(_MPMAIN))
 
 _MPIOBJ = tbarriermpi.o dbarriermpi.o
