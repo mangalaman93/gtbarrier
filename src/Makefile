@@ -6,7 +6,7 @@ CPPFLAGS = -g -Wall $(OMPFLAGS)
 LDFLAGS = -g -Wall
 LDLIBS = $(OMPLIBS)
 
-MPICC = /opt/openmpi-1.4.3-gcc44
+MPICC = mpicc
 MPICH = /home/ubuntu/openmpi-1.8.1/ompi
 CFLAGS = -I$(MPICH)/include
 
@@ -16,7 +16,7 @@ centralized: centralized.o
 	$(CC) $(LDFLAGS) -o $@ $^ $(LDLIBS) 
 
 disbarrier: disbarrier.c
-	$(MPICC) -o $@ $(LDFLAGS) $^ $(LDLIBS)
+	$(CC) -o $@ $(LDFLAGS) $^ $(LDLIBS)
 
 evaluateMPI: evaluateMPI.c
 	$(MPICC) -o $@ $(LDFLAGS) $^ $(LDLIBS)
