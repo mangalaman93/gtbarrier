@@ -1,3 +1,8 @@
+/*
+ * as rank 0 is lagging behind, but still all process
+ * output almost at the same time
+*/
+
 #include <unistd.h>
 #include <cstdlib>
 #include "tbarriermixed.h"

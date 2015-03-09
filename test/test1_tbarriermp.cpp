@@ -1,3 +1,8 @@
+/*
+ * all the output with `=>` prefix and without this prefix
+ * should be together (cannot interleaved)
+ */
+
 #include <unistd.h>
 #include <cstdlib>
 #include <omp.h>
