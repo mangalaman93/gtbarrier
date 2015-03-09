@@ -41,7 +41,7 @@ int main(int argc, char **argv) {
     s += sum[i];
   }
 
-  printf("avg, %f\n", (float)s/NUM_BARRIERS/num_threads);
+  printf("avg, %f\n", (float)s/NUM_BARRIERS);
 
   delete[] sum;
   return 0;
