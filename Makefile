@@ -23,7 +23,8 @@ MPMAIN = $(patsubst %,$(ODIR)/%,$(_MPMAIN))
 _MPIOBJ = tbarriermpi.o dbarriermpi.o
 MPIOBJ = $(patsubst %,$(ODIR)/%,$(_MPIOBJ))
 
-_MPIMAIN = test1_tbarriermpi test1_dbarriermpi
+_MPIMAIN = test1_tbarriermpi test1_dbarriermpi perf_tbarriermpi
+#perf_defaultmpi perf_tbarriermpi perf_cbarriermpi
 MPIMAIN = $(patsubst %,$(ODIR)/%,$(_MPIMAIN))
 
 _MIXEDOBJ = tbarriermixed.o
