@@ -25,8 +25,8 @@ int main(int argc, char **argv) {
     }
     time2 = omp_get_wtime();
     #pragma omp critical
-    {sum+=(time2-time1)*1000;}
+    {sum+=(time2-time1)*1000000;}
   }
-  printf("Average time per barrier: %d ms\n",(int)(sum/NUM_BARRIERS));
+  printf("Average time per barrier: ,%d, us\n",(int)(sum/NUM_BARRIERS));
   return (int)(sum/NUM_BARRIERS);
 }

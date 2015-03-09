@@ -6,7 +6,7 @@ CPPFLAGS = -g -Wall $(OMPFLAGS)
 LDFLAGS = -g -Wall
 LDLIBS = $(OMPLIBS)
 
-MPICC = /usr/lib64/openmpi/bin/mpicc
+MPICC = /opt/openmpi-1.4.3-gcc44
 MPICH = /home/ubuntu/openmpi-1.8.1/ompi
 CFLAGS = -I$(MPICH)/include
 

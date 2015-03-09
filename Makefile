@@ -4,7 +4,7 @@
 CC = g++
 DEBUG = -ffast-math -O3
 PROFILE =
-MPICC = /usr/lib64/openmpi/bin/mpic++
+MPICC = /opt/intel/Compiler/11.1/059/bin/intel64/mpic++
 
 IDIR = include
 SDIR = src

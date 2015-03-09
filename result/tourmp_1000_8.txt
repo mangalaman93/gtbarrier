@@ -1,0 +1,2 @@
+Average time per barrier: 0 ms
+Average time per barrier: ,17, us
