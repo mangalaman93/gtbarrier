@@ -23,13 +23,15 @@ OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 _MPOBJ = tbarriermp.o
 MPOBJ = $(patsubst %,$(ODIR)/%,$(_MPOBJ))
 
-_MPMAIN = test1_tbarriermp
+#_MPMAIN = test1_tbarriermp evaltourmp centralmp
+_MPMAIN = evaltourmp centralmp
 MPMAIN = $(patsubst %,$(ODIR)/%,$(_MPMAIN))
 
 _MPIOBJ = tbarriermpi.o
 MPIOBJ = $(patsubst %,$(ODIR)/%,$(_MPIOBJ))
 
-_MPIMAIN = test1_tbarriermpi
+#_MPIMAIN = test1_tbarriermpi
+_MPIMAIN = tourmpi
 MPIMAIN = $(patsubst %,$(ODIR)/%,$(_MPIMAIN))
 
 _MIXEDOBJ = tbarriermixed.o
@@ -37,6 +39,7 @@ MIXEDOBJ = $(patsubst %,$(ODIR)/%,$(_MIXEDOBJ))
 
 _MIXEDMAIN = test1_tbarriermixed
 MIXEDMAIN = $(patsubst %,$(ODIR)/%,$(_MIXEDMAIN))
+
 
 all: dir $(MPMAIN) $(MPIMAIN) $(MIXEDMAIN)
 
@@ -66,6 +69,7 @@ $(ODIR)/%r.o: $(SDIR)/%r.cpp $(DEPS)
 
 $(ODIR)/%r: $(TDIR)/%r.cpp $(OBJ)
 	$(CC) $(CFLAGS) -o $@ $^ $(LIBS)
+
 
 clean:
 	rm -rf $(ODIR) *~

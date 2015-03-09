@@ -22,4 +22,4 @@ evaluateMPI: evaluateMPI.c
 	$(MPICC) -o $@ $(LDFLAGS) $^ $(LDLIBS)
 
 clean:
-	rm -f *.o disbarrier evaluateMPI
+	rm -f *.o disbarrier evaluateMPI centralized
