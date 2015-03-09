@@ -2,18 +2,18 @@ OMPFLAGS = -fopenmp
 OMPLIBS = -lgomp
 
 CC = gcc
-CPPFLAGS = -g -Wall
+CPPFLAGS = -g -Wall $(OMPFLAGS)
 LDFLAGS = -g -Wall
 LDLIBS = $(OMPLIBS)
 
-MPICC = mpicc
+MPICC = /usr/lib64/openmpi/bin/mpicc
 MPICH = /home/ubuntu/openmpi-1.8.1/ompi
 CFLAGS = -I$(MPICH)/include
 
 all: disbarrier evaluateMPI centralized
 
 centralized: centralized.o
-	$(CC) $(LDFLAGS) -o $@ $^ $(LDLIBS)
+	$(CC) $(LDFLAGS) -o $@ $^ $(LDLIBS) 
 
 disbarrier: disbarrier.c
 	$(MPICC) -o $@ $(LDFLAGS) $^ $(LDLIBS)

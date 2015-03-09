@@ -24,7 +24,7 @@ int main(int argc, char **argv){
         if (argc != 3){ printf( "usage: %s num_barriers num_threads\n", argv[0] ); return -1;}
         NUM_BARRIERS=atoi(argv[1]);
         NUM_THREADS=atoi(argv[2]);
-        //printf("Initializing...\n");
+        printf("Initializing...\n");
         omp_set_num_threads( NUM_THREADS );
         int sense = 1, count = NUM_THREADS;
         int counter=0,sum=0;
@@ -42,13 +42,13 @@ int main(int argc, char **argv){
             time2 = omp_get_wtime();
         #pragma omp critical
         {
-            sum+=(time2-time1)*1000;
+            sum+=(time2-time1)*1000000;
             counter+=1;
         }
 
         }
         //printf("Average time per thread: %d ms\n",(int)(sum/(NUM_BARRIERS*NUM_THREADS)));
         //printf("Stopping...\n");
-        printf("Average time per barrier: %d ms\n",(int)(sum/NUM_BARRIERS));
+        printf("Average time per barrier: %d us\n",(int)(sum/NUM_BARRIERS));
         return (int)(sum/NUM_BARRIERS);
 }
