@@ -5,7 +5,7 @@
 #include <time.h>
 #include <unistd.h>
 
-#define NUM_BARRIERS 10000
+#define NUM_BARRIERS 1000
 
 int main() {
   int num_procs, rank;

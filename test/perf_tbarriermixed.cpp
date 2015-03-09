@@ -6,7 +6,7 @@
 #include "tbarriermixed.h"
 using namespace std;
 
-#define NUM_BARRIERS 10000
+#define NUM_BARRIERS 1000
 
 int main(int argc, char **argv) {
   // MP
