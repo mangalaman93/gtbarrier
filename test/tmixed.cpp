@@ -32,7 +32,7 @@ int main(int argc, char **argv) {
     for(i=0; i<NUM_BARRIERS; i++){tbmixed.barrier();}
     time2 = omp_get_wtime();
     #pragma omp critical
-    {sum+=(time2-time1)*1000;}
+    {sum+=(time2-time1)*1000000;}
     tbmixed.barrier();
 
   }
