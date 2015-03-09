@@ -9,7 +9,7 @@ using namespace std;
 
 class CBarrierMP {
   int num_threads;
-  int count;
+  volatile int count;
 
   // sense variables
   volatile bool *wakeup_sense;

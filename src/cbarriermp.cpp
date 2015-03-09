@@ -23,13 +23,17 @@ void CBarrierMP::barrier() {
   wakeup_sense[thread_id] = !wakeup_sense[thread_id];
 
   // arrival
+  bool flag = false;
   #pragma omp critical
   {
     count--;
+    if(count == 0) {
+      flag = true;
+    }
   }
 
   // wake up
-  if(count == 0) {
+  if(flag) {
     count = num_threads;
     global_wakeup = !global_wakeup;
   } else {
