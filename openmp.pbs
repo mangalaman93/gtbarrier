@@ -1,20 +1,27 @@
 #PBS -q cs6210
-#PBS -l nodes=2
+#PBS -l nodes=jinx3
 #PBS -l walltime=00:01:00
-#PBS -N bcast
+#PBS -N cs6210
 
-export OMPI_MCA_mpi_yield_when_idle=0
+# Changes to the directory we were in when we
+# submit the job:
+
 cd $PBS_O_WORKDIR
 
+# Runs a bunch of standard command-line
+# utilities, just as an example:
 
-echo "*** STARTED: `date` on `hostname` ***"
-echo $PWD
-cat $PBS_NODEFILE
-echo -e "\n\n"
+echo "Script began:" `date`
+echo "Node:" `hostname`
+echo "Current directory: ${PWD}"
 
-# Run the program
-mpirun --hostfile $PBS_NODEFILE -np 2 ./bcast
+echo ""
+for trial in 2 3 4 5 6; do
+  echo "*** Processes ${procs} ***"
+  ./bin/perf_defaultmp ${procs}
+done
 
-echo "*** COMPLETED: `date` on `hostname` ***"
+echo ""
+echo "=== Done! ==="
 
 # eof
