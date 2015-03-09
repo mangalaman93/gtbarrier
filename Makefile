@@ -23,15 +23,15 @@ OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 _MPOBJ = tbarriermp.o
 MPOBJ = $(patsubst %,$(ODIR)/%,$(_MPOBJ))
 
-#_MPMAIN = test1_tbarriermp evaltourmp centralmp
-_MPMAIN = evaltourmp centralmp
+#_MPMAIN = test1_tbarriermp evaltourmp defaultmp
+_MPMAIN = evaltourmp defaultmp
 MPMAIN = $(patsubst %,$(ODIR)/%,$(_MPMAIN))
 
 _MPIOBJ = tbarriermpi.o
 MPIOBJ = $(patsubst %,$(ODIR)/%,$(_MPIOBJ))
 
 #_MPIMAIN = test1_tbarriermpi
-_MPIMAIN = tourmpi
+_MPIMAIN = tourmpi defaultmpi
 MPIMAIN = $(patsubst %,$(ODIR)/%,$(_MPIMAIN))
 
 _MIXEDOBJ = tbarriermixed.o
