@@ -1,2 +1,0 @@
-0 Average time 2 processes took to sync per barrier:1 ms
-1 Average time 2 processes took to sync per barrier:1 ms

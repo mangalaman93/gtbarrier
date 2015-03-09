@@ -1,5 +1,0 @@
-0 Average time 5 processes took to sync per barrier:2 ms
-1 Average time 5 processes took to sync per barrier:2 ms
-2 Average time 5 processes took to sync per barrier:2 ms
-3 Average time 5 processes took to sync per barrier:2 ms
-4 Average time 5 processes took to sync per barrier:2 ms

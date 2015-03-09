@@ -1,5 +1,5 @@
 /*
- * OpenMPI Barrier (Tournament Barrier)
+ * OpenMPI Barrier (Dissemination Barrier)
  */
 
 #include <cstdio>
@@ -7,11 +7,11 @@
 #include <mpi.h>
 using namespace std;
 
-class TBarrierMPI {
+class DBarrierMPI {
   int num_procs;
 
 public:
-  TBarrierMPI(int nporcs);
-  ~TBarrierMPI();
+  DBarrierMPI(int nporcs);
+  ~DBarrierMPI();
   void barrier();
 };

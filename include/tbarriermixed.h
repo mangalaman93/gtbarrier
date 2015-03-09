@@ -1,3 +1,7 @@
+/*
+ * Mixed Barrier Implementation: Tournament + Tournament
+ */
+
 #include <omp.h>
 #include "tbarriermpi.h"
 using namespace std;

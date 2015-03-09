@@ -1,7 +1,0 @@
-0 Average time 7 processes took to sync per barrier:4 ms
-1 Average time 7 processes took to sync per barrier:4 ms
-2 Average time 7 processes took to sync per barrier:4 ms
-3 Average time 7 processes took to sync per barrier:4 ms
-4 Average time 7 processes took to sync per barrier:4 ms
-5 Average time 7 processes took to sync per barrier:4 ms
-6 Average time 7 processes took to sync per barrier:4 ms

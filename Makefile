@@ -14,24 +14,16 @@ ODIR = bin
 CFLAGS = -I$(IDIR) $(DEBUG) $(PROFILE) -Wall
 LIBS =
 
-_DEPS = timer.h
-DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
-
-_OBJ = timer.o
-OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
-
-_MPOBJ = tbarriermp.o
+_MPOBJ = tbarriermp.o cbarriermp.o
 MPOBJ = $(patsubst %,$(ODIR)/%,$(_MPOBJ))
 
-#_MPMAIN = test1_tbarriermp evaltourmp defaultmp
-_MPMAIN = evaltourmp defaultmp
+_MPMAIN = test1_tbarriermp test1_cbarriermp
 MPMAIN = $(patsubst %,$(ODIR)/%,$(_MPMAIN))
 
-_MPIOBJ = tbarriermpi.o
+_MPIOBJ = tbarriermpi.o dbarriermpi.o
 MPIOBJ = $(patsubst %,$(ODIR)/%,$(_MPIOBJ))
 
-#_MPIMAIN = test1_tbarriermpi
-_MPIMAIN = tourmpi defaultmpi
+_MPIMAIN = test1_tbarriermpi test1_dbarriermpi
 MPIMAIN = $(patsubst %,$(ODIR)/%,$(_MPIMAIN))
 
 _MIXEDOBJ = tbarriermixed.o
@@ -39,7 +31,6 @@ MIXEDOBJ = $(patsubst %,$(ODIR)/%,$(_MIXEDOBJ))
 
 _MIXEDMAIN = test1_tbarriermixed
 MIXEDMAIN = $(patsubst %,$(ODIR)/%,$(_MIXEDMAIN))
-
 
 all: dir $(MPMAIN) $(MPIMAIN) $(MIXEDMAIN)
 
@@ -53,7 +44,7 @@ $(ODIR)/%mpi: $(TDIR)/%mpi.cpp $(OBJ) $(MPIOBJ)
 	$(MPICC) $(CFLAGS) -o $@ $^ $(LIBS)
 
 $(ODIR)/%mp.o: $(SDIR)/%mp.cpp $(DEPS)
-	$(CC) $(CFLAGS) -c -o $@ $<
+	$(CC) $(CFLAGS) -c -o $@ $< -fopenmp
 
 $(ODIR)/%mp: $(TDIR)/%mp.cpp $(OBJ) $(MPOBJ)
 	$(CC) $(CFLAGS) -o $@ $^ $(LIBS) -fopenmp
@@ -63,13 +54,6 @@ $(ODIR)/%mixed.o: $(SDIR)/%mixed.cpp $(DEPS)
 
 $(ODIR)/%mixed: $(TDIR)/%mixed.cpp $(OBJ) $(MIXEDOBJ)
 	$(MPICC) $(CFLAGS) -o $@ $^ $(LIBS) $(MPIOBJ) -fopenmp
-
-$(ODIR)/%r.o: $(SDIR)/%r.cpp $(DEPS)
-	$(CC) $(CFLAGS) -c -o $@ $<
-
-$(ODIR)/%r: $(TDIR)/%r.cpp $(OBJ)
-	$(CC) $(CFLAGS) -o $@ $^ $(LIBS)
-
 
 clean:
 	rm -rf $(ODIR) *~

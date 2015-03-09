@@ -1,5 +1,5 @@
 /*
- * OpenMP Barrier (Tournament Barrier)
+ * OpenMP Barrier (Centralised Barrier)
  */
 
 #include <cstdio>
@@ -7,17 +7,16 @@
 #include <omp.h>
 using namespace std;
 
-class TBarrierMP {
+class CBarrierMP {
   int num_threads;
-  int datasize;
+  int count;
 
   // sense variables
-  volatile bool *barrier_sense;
   volatile bool *wakeup_sense;
   volatile bool global_wakeup;
 
 public:
-  TBarrierMP(int nthreads);
-  ~TBarrierMP();
+  CBarrierMP(int nthreads);
+  ~CBarrierMP();
   void barrier();
 };
