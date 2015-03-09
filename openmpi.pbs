@@ -1,6 +1,6 @@
 #PBS -q cs6210
 #PBS -l nodes=12:sixcore
-#PBS -l walltime=00:01:00
+#PBS -l walltime=00:20:00
 #PBS -N cs6210
 
 # Changes to the directory we were in when we
@@ -16,10 +16,24 @@ echo "Node:" `hostname`
 echo "Current directory: ${PWD}"
 
 echo ""
-echo "default openmp barrier"
+echo "Default Barrier"
 for procs in 2 3 4 5 6 7 8 9 10 11 12; do
   echo "*** Processes ${procs} ***"
-  mpirun --hostfile $PBS_NODEFILE -np $(procs) ./perf_tbarriermpi
+  mpirun --hostfile $PBS_NODEFILE -np ${procs} --mca btl tcp,self ./bin/perf_defaultmpi
+done
+
+echo ""
+echo "Tournament Barrier"
+for procs in 2 3 4 5 6 7 8 9 10 11 12; do
+  echo "*** Processes ${procs} ***"
+  mpirun --hostfile $PBS_NODEFILE -np ${procs} --mca btl tcp,self ./bin/perf_tbarriermpi
+done
+
+echo ""
+echo "Dissemination barrier"
+for procs in 2 3 4 5 6 7 8 9 10 11 12; do
+  echo "*** Processes ${procs} ***"
+  mpirun --hostfile $PBS_NODEFILE -np ${procs} --mca btl tcp,self ./bin/perf_dbarriermpi
 done
 
 echo ""

@@ -17,23 +17,23 @@ echo "Current directory: ${PWD}"
 
 echo ""
 echo "default openmp barrier"
-for procs in 2 3 4 5 6; do
-  echo "*** Processes ${procs} ***"
-  ./bin/perf_defaultmp ${procs}
+for threads in 2 3 4 5 6 7 8; do
+  echo "*** Processes ${threads} ***"
+  ./bin/perf_defaultmp ${threads}
 done
 
 echo ""
 echo "default Tournament barrier"
-for procs in 2 3 4 5 6; do
-  echo "*** Processes ${procs} ***"
-  ./bin/perf_tbarriermp ${procs}
+for threads in 2 3 4 5 6 7 8; do
+  echo "*** Processes ${threads} ***"
+  ./bin/perf_tbarriermp ${threads}
 done
 
 echo ""
 echo "default Centralised barrier"
-for procs in 2 3 4 5 6; do
-  echo "*** Processes ${procs} ***"
-  ./bin/perf_cbarriermp ${procs}
+for threads in 2 3 4 5 6 7 8; do
+  echo "*** Processes ${threads} ***"
+  ./bin/perf_cbarriermp ${threads}
 done
 
 echo ""
