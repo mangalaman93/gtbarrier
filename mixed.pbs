@@ -25,6 +25,15 @@ for procs in 2 4 6 8; do
 done
 
 echo ""
+echo "Tournament-Dissemination Mixed Barrier"
+for procs in 2 4 6 8; do
+  for threads in 2 4 6 8 10 12; do
+    echo "*** Processes ${procs},${threads} ***"
+    mpirun --hostfile $PBS_NODEFILE -np ${procs} --mca btl tcp,self ./bin/perf_tdbarriermixed ${threads}
+  done
+done
+
+echo ""
 echo "=== Done! ==="
 
 # eof

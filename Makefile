@@ -26,10 +26,10 @@ MPIOBJ = $(patsubst %,$(ODIR)/%,$(_MPIOBJ))
 _MPIMAIN = test1_tbarriermpi test1_dbarriermpi perf_defaultmpi perf_tbarriermpi perf_dbarriermpi
 MPIMAIN = $(patsubst %,$(ODIR)/%,$(_MPIMAIN))
 
-_MIXEDOBJ = tbarriermixed.o
+_MIXEDOBJ = tbarriermixed.o tdbarriermixed.o
 MIXEDOBJ = $(patsubst %,$(ODIR)/%,$(_MIXEDOBJ))
 
-_MIXEDMAIN = test1_tbarriermixed perf_tbarriermixed
+_MIXEDMAIN = test1_tbarriermixed test1_tdbarriermixed perf_tdbarriermixed perf_tdbarriermixed
 MIXEDMAIN = $(patsubst %,$(ODIR)/%,$(_MIXEDMAIN))
 
 all: dir $(MPMAIN) $(MPIMAIN) $(MIXEDMAIN)
