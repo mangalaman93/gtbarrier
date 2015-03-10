@@ -50,7 +50,7 @@ int main(int argc, char **argv) {
     s += sum[i];
   }
 
-  printf("%d,%d,%d,%f\n", rank, num_procs, num_threads, (float)s/num_procs/num_threads);
+  printf("%d,%d,%d,%f\n", rank, num_procs, num_threads, (float)s);
 
   delete[] sum;
   MPI_Finalize();
